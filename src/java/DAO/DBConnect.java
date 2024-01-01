@@ -14,12 +14,12 @@ import java.sql.SQLException;
  */
 public class DBConnect {
     protected static Connection connection;
-
+    protected static String databaseName;
     public DBConnect() {
         try {
             String user = "root";
-            String pass = "123456";
-            String databaseName = "web";
+            String pass = "1Hitgapcu@";
+            databaseName = "btl_testdb";
             String url = "jdbc:mysql://localhost:3306/" + databaseName;
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, pass);
