@@ -110,10 +110,10 @@ public class OrdersDAO extends DBConnect{
         return null;
     }
      public void updateOrder(Order order){
-       String sql = "UPDATE " + databaseName + ".order SET "
-            + "totalMoney = ?,"
-            + "orderDate = ?,"
-            + "status = ?"
+       String sql = "UPDATE " + databaseName + ".order SET \n"
+            + "totalMoney = ?,\n"
+            + "orderDate = ?,\n"
+            + "status = ?\n"
             + "WHERE orderID = ?;"; 
        
         try {
@@ -162,10 +162,4 @@ public class OrdersDAO extends DBConnect{
          }
          return list;
      }
-     //public static void main(String[] args) {
-       // OrdersDAO odd = new OrdersDAO();
-        //Order od = odd.getOrderById("od1");
-        //od.setStatus("Shipping");
-        //odd.updateOrder(od);
-       // }
 }

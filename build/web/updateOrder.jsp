@@ -123,10 +123,10 @@
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select name="status" id="status" value="${c.status}">
-                        <option value="1">Processing</option>
-                        <option value="2">Shipping</option>
-                        <option value="3">Completed</option>
+                    <select name="status" id="status" ${c.status}>
+                        <option value="Processing">Processing</option>
+                        <option value="Shipping">Shipping</option>
+                        <option value="Completed">Completed</option>
                     </select>
                 </div>
                 <div class="form__btn">
