@@ -1,17 +1,13 @@
-<%-- 
-    Document   : addCategory
-    Created on : Nov 23, 2023, 3:00:55 PM
-    Author     : Fattt
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
+    <title>View Order Details</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -22,7 +18,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="assets/css/adminDashboard.css">
-    <link rel="stylesheet" href="assets/css/addProduct.css" />
+    <link rel="stylesheet" href="assets/css/viewOrder.css">
 
 </head>
 
@@ -105,22 +101,71 @@
                 </a>
             </div>
         </div>
-        <div class="product">
-            <h1>Add Category</h1>
-            <form class="product__form" action="addCategory">
-                <div class="form-group">
-                    <label for="categoryID">ID</label>
-                    <input type="text" id="categoryID" name="categoryID" required />
+        <div class="detail">
+            <h1>Order Details</h1>
+            <c:set var="c" value="${requestScope.order}" />
+            <div class="detail__order">               
+                <div class="detail-group">
+                    <span>Order ID</span>
+                    <div>${c.orderID}</div>
                 </div>
-                <div class="form-group">
-                    <label for="name">Category Name</label>
-                    <input type="text" id="name" name="name" required />
+                <div class="detail-group">
+                    <span>Username</span>
+                    <div>${c.username}</div>
                 </div>
-                <div class="form__btn">
-                    <button type="submit">Add</button>
-                    <a href="categoryManager">Cancel</a>
+                <div class="detail-group">
+                    <span>Fullname</span>
+                    <div>${c.fullname}</div>
                 </div>
-            </form>
+                <div class="detail-group">
+                    <span>Phone</span>
+                    <div>${c.phone}</div>
+                </div>
+                <div class="detail-group">
+                    <span>Order Date</span>
+                    <div>${c.orderDate}</div>
+                </div>
+                <div class="detail-group">
+                    <span>Total</span>
+                    <div>${c.totalMoney}</div>
+                </div>
+                <div class="detail-group">
+                    <span>Status</span>
+                    <div>${c.status}</div>
+                </div>
+                <div class="detail__list">
+                    <span>Order List</span>
+                    <div class="detail__table">
+                        <table>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                            <c:forEach items="${requestScope.orderDetails}" var="c">
+                            <tr>
+                                <td class="detail__product">
+                                    <div>
+                                        <img src="${c.image}" alt="">
+                                        <span>${c.name}</span>
+                                    </div>
+                                </td>
+                                <td class="detail__price">
+                                    ${c.price}
+                                </td>
+                                <td class="detail__quantity">
+                                    ${c.quantity}
+                                </td>
+                                <td class="detail__subtotal">
+                                    ${c.subtotal}
+                                </td>
+                            </tr>
+                         </c:forEach>    
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- End main -->

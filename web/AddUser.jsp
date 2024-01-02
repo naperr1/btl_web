@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="orderManager">
+                    <a href="listOrdersManager">
                         <span><i class='bx bx-cart'></i></span>
                         <h3>Orders</h3>
                     </a>

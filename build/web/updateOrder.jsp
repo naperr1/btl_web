@@ -1,17 +1,13 @@
-<%-- 
-    Document   : addCategory
-    Created on : Nov 23, 2023, 3:00:55 PM
-    Author     : Fattt
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
+    <title>Update Order</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -22,7 +18,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="assets/css/adminDashboard.css">
-    <link rel="stylesheet" href="assets/css/addProduct.css" />
+    <link rel="stylesheet" href="assets/css/updateOrder.css">
 
 </head>
 
@@ -105,20 +101,37 @@
                 </a>
             </div>
         </div>
-        <div class="product">
-            <h1>Add Category</h1>
-            <form class="product__form" action="addCategory">
+        <div class="detail">
+            <h1>Update Order</h1>
+            <c:set var="c" value="${requestScope.order}" />
+            <form class="detail__form" action="updateOrder" method="post">
                 <div class="form-group">
-                    <label for="categoryID">ID</label>
-                    <input type="text" id="categoryID" name="categoryID" required />
+                    <label for="id">Order ID</label>
+                    <input type="text" id="id" name="id" value="${c.orderID}" required />
                 </div>
                 <div class="form-group">
-                    <label for="name">Category Name</label>
-                    <input type="text" id="name" name="name" required />
+                    <label for="name">Username</label>
+                    <input type="text" id="name" name="name" value="${c.username}" required />
+                </div>
+                <div class="form-group">
+                    <label for="total">Total</label>
+                    <input type="text" id="total" name="total" value="${c.totalMoney}" required />
+                </div>
+                <div class="form-group">
+                    <label for="date">Order Date</label>
+                    <input type="text" id="date" name="date" value="${c.orderDate}" required />
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status" ${c.status}>
+                        <option value="Processing">Processing</option>
+                        <option value="Shipping">Shipping</option>
+                        <option value="Completed">Completed</option>
+                    </select>
                 </div>
                 <div class="form__btn">
-                    <button type="submit">Add</button>
-                    <a href="categoryManager">Cancel</a>
+                    <button type="submit">Update</button>
+                    <a href="listOrdersManager">Cancel</a>
                 </div>
             </form>
         </div>
