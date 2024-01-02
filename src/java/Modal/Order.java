@@ -13,6 +13,9 @@ public class Order {
     private double totalMoney;
     private String status;
     private String orderDate;
+    public Order(){
+        
+    }
 
     public Order(String orderID, String username, double totalMoney, String status, String date) {
         this.orderID = orderID;

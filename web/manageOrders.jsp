@@ -152,12 +152,12 @@
                                 <td class="orders__action">
                                     <ul>
                                         <li>
-                                            <a href="viewOrder.html">
+                                            <a href="viewOrder?orderID=${c.orderID}">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="updateOrder.html">
+                                            <a href="updateOrder?orderID=${c.orderID}">
                                                 <i class="fa-solid fa-pencil"></i>
                                             </a>
                                         </li>
