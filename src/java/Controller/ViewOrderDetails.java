@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.OrdersDAO;
 import Modal.OrderDetails;
+import Modal.OrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -59,9 +61,12 @@ public class ViewOrderDetails extends HttpServlet {
     throws ServletException, IOException {
         String orderID = request.getParameter("orderID");
         OrdersDAO odd = new OrdersDAO();
+        
         try {
             OrderDetails od = odd.getOrderDetailsById(orderID);
+            List<OrderItem> odi = odd.getOrderItemByOrderId(orderID);
             request.setAttribute("order", od);
+            request.setAttribute("orderDetails", odi);
             request.getRequestDispatcher("viewOrder.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);

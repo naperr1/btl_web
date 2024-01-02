@@ -143,91 +143,25 @@
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
                             </tr>
+                            <c:forEach items="${requestScope.orderDetails}" var="c">
                             <tr>
                                 <td class="detail__product">
                                     <div>
-                                        <img src="assets/image/diningchair.jpg" alt="">
-                                        <span>Dining Chair</span>
+                                        <img src="${c.image}" alt="">
+                                        <span>${c.name}</span>
                                     </div>
                                 </td>
                                 <td class="detail__price">
-                                    1000$
+                                    ${c.price}
                                 </td>
                                 <td class="detail__quantity">
-                                    2
+                                    ${c.quantity}
                                 </td>
                                 <td class="detail__subtotal">
-                                    2000$
+                                    ${c.subtotal}
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="detail__product">
-                                    <div>
-                                        <img src="assets/image/diningchair.jpg" alt="">
-                                        <span>Dining Chair</span>
-                                    </div>
-                                </td>
-                                <td class="detail__price">
-                                    1000$
-                                </td>
-                                <td class="detail__quantity">
-                                    2
-                                </td>
-                                <td class="detail__subtotal">
-                                    2000$
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="detail__product">
-                                    <div>
-                                        <img src="assets/image/diningchair.jpg" alt="">
-                                        <span>Dining Chair</span>
-                                    </div>
-                                </td>
-                                <td class="detail__price">
-                                    1000$
-                                </td>
-                                <td class="detail__quantity">
-                                    2
-                                </td>
-                                <td class="detail__subtotal">
-                                    2000$
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="detail__product">
-                                    <div>
-                                        <img src="assets/image/diningchair.jpg" alt="">
-                                        <span>Dining Chair</span>
-                                    </div>
-                                </td>
-                                <td class="detail__price">
-                                    1000$
-                                </td>
-                                <td class="detail__quantity">
-                                    2
-                                </td>
-                                <td class="detail__subtotal">
-                                    2000$
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="detail__product">
-                                    <div>
-                                        <img src="assets/image/diningchair.jpg" alt="">
-                                        <span>Dining Chair</span>
-                                    </div>
-                                </td>
-                                <td class="detail__price">
-                                    1000$
-                                </td>
-                                <td class="detail__quantity">
-                                    2
-                                </td>
-                                <td class="detail__subtotal">
-                                    2000$
-                                </td>
-                            </tr>
+                         </c:forEach>    
                         </table>
                     </div>
                 </div>

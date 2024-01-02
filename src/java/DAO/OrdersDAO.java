@@ -7,9 +7,11 @@ package DAO;
 import static DAO.DBConnect.connection;
 import Modal.Order;
 import Modal.OrderDetails;
+import Modal.OrderItem;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,11 +132,40 @@ public class OrdersDAO extends DBConnect{
         } catch (Exception e) {
             System.out.println(e);
         }
-    }  
-     public static void main(String[] args) {
-        OrdersDAO odd = new OrdersDAO();
-        Order od = odd.getOrderById("od1");
-        od.setStatus("Shipping");
-        odd.updateOrder(od);
-        }
+    }
+     
+     public List<OrderItem> getOrderItemByOrderId(String orderID) {
+         List<OrderItem> list = new ArrayList<OrderItem>();
+         String sql = "SELECT image, name, sellPrice, quantity\n" +
+                        "from orderitem, item\n" +
+                        "where orderID_orderItem = ?" +
+                            "and itemID_orderItem = itemID";
+         try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, orderID);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                double total = rs.getDouble("sellPrice") * rs.getInt("quantity");
+                 DecimalFormat df = new DecimalFormat("#.##");
+                 String formattedNumber = df.format(total);
+                 double totalNumber = Double.parseDouble(formattedNumber);
+                OrderItem odi = new OrderItem(
+                        rs.getString("image"), 
+                        rs.getString("name"), 
+                        rs.getDouble("sellPrice"),                      
+                        rs.getInt("quantity"),
+                        totalNumber);
+                list.add(odi);
+            }
+         } catch(Exception e) {
+            System.out.println(e); 
+         }
+         return list;
+     }
+     //public static void main(String[] args) {
+       // OrdersDAO odd = new OrdersDAO();
+        //Order od = odd.getOrderById("od1");
+        //od.setStatus("Shipping");
+        //odd.updateOrder(od);
+       // }
 }
